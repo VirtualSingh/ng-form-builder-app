@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #ffffff;
+  }
+  
+  /* Form elements */
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+  
+  /* Utility classes */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Loading spinner animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive utilities */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+  }
