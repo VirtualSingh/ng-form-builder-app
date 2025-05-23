@@ -1,0 +1,122 @@
+<div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2>{{ isLoginMode ? 'Sign In' : 'Create Account' }}</h2>
+        <p>{{ isLoginMode ? 'Welcome back!' : 'Join us to start building forms' }}</p>
+      </div>
+  
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Login Form -->
+      <form *ngIf="isLoginMode" [formGroup]="loginForm" (ngSubmit)="onLogin()" class="auth-form">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input
+            id="loginEmail"
+            type="email"
+            formControlName="email"
+            [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            placeholder="Enter your email"
+          >
+          <div class="field-error">{{ getFieldError(loginForm, 'email') }}</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input
+            id="loginPassword"
+            type="password"
+            formControlName="password"
+            [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            placeholder="Enter your password"
+          >
+          <div class="field-error">{{ getFieldError(loginForm, 'password') }}</div>
+        </div>
+  
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading"
+          class="auth-button"
+        >
+          <span *ngIf="!isLoading">Sign In</span>
+          <span *ngIf="isLoading" class="loading-spinner">Signing in...</span>
+        </button>
+      </form>
+  
+      <!-- Signup Form -->
+      <form *ngIf="!isLoginMode" [formGroup]="signupForm" (ngSubmit)="onSignup()" class="auth-form">
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input
+            id="signupName"
+            type="text"
+            formControlName="displayName"
+            [class.error]="signupForm.get('displayName')?.invalid && signupForm.get('displayName')?.touched"
+            placeholder="Enter your full name"
+          >
+          <div class="field-error">{{ getFieldError(signupForm, 'displayName') }}</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input
+            id="signupEmail"
+            type="email"
+            formControlName="email"
+            [class.error]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+            placeholder="Enter your email"
+          >
+          <div class="field-error">{{ getFieldError(signupForm, 'email') }}</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input
+            id="signupPassword"
+            type="password"
+            formControlName="password"
+            [class.error]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+            placeholder="Choose a password (min. 6 characters)"
+          >
+          <div class="field-error">{{ getFieldError(signupForm, 'password') }}</div>
+        </div>
+  
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            [class.error]="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched"
+            placeholder="Confirm your password"
+          >
+          <div class="field-error">{{ getFieldError(signupForm, 'confirmPassword') }}</div>
+        </div>
+  
+        <div class="form-error">{{ getFormError() }}</div>
+  
+        <button
+          type="submit"
+          [disabled]="signupForm.invalid || isLoading"
+          class="auth-button"
+        >
+          <span *ngIf="!isLoading">Create Account</span>
+          <span *ngIf="isLoading" class="loading-spinner">Creating account...</span>
+        </button>
+      </form>
+  
+      <!-- Switch Mode -->
+      <div class="auth-switch">
+        <p *ngIf="isLoginMode">
+          Don't have an account?
+          <button type="button" (click)="switchMode()" class="link-button">Sign up</button>
+        </p>
+        <p *ngIf="!isLoginMode">
+          Already have an account?
+          <button type="button" (click)="switchMode()" class="link-button">Sign in</button>
+        </p>
+      </div>
+    </div>
