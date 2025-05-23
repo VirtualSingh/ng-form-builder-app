@@ -3,10 +3,18 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  template: `
+    <router-outlet></router-outlet>
+  `,
+  styles: [`
+    :host {
+      display: block;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'ng-form-builder-app';
+  title = 'form-builder';
 }
