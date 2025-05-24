@@ -7,7 +7,6 @@ import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [CommonModule],
   template: `
     <div class="dashboard-container">
